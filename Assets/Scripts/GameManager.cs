@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,10 +21,18 @@ public class GameManager : MonoBehaviour
     private float startTime;
     private bool isGameOver = false;
 
+    private InputAction right;
+    private InputAction left;
+    private InputAction up;
+
     void Start()
     {
+        right = InputSystem.actions.FindAction("NextZombie");
+        left = InputSystem.actions.FindAction("PrevZombie");
+        up = InputSystem.actions.FindAction("Jump");
+
         SelectZombie(zombies[0]);
-        scoreText.text = "Score: " + score;
+        if (scoreText != null) scoreText.text = "Score: " + score;
         startTime = Time.time;
         if (loseScreen != null) loseScreen.SetActive(false);
     }
@@ -34,27 +43,46 @@ public class GameManager : MonoBehaviour
 
         float t = Time.time - startTime;
         if (timerText != null) timerText.text = "Time: " + t.ToString("F2");
+        GetZombieLeft();
+        GetZombieRight();
+        PushUp();
     }
 
     public void GetZombieLeft()
     {
         if (isGameOver) return;
-        if (selectedZombiePosition == 0) SelectZombie(zombies[zombies.Count - 1]);
-        else SelectZombie(zombies[selectedZombiePosition - 1]);
+
+        if (left != null && left.triggered)
+        {
+            if (selectedZombiePosition == 0)
+                SelectZombie(zombies[zombies.Count - 1]);
+            else
+                SelectZombie(zombies[selectedZombiePosition - 1]);
+        }
     }
 
     public void GetZombieRight()
     {
         if (isGameOver) return;
-        if (selectedZombiePosition == zombies.Count - 1) SelectZombie(zombies[0]);
-        else SelectZombie(zombies[selectedZombiePosition + 1]);
+
+        if (right != null && right.triggered)
+        {
+            if (selectedZombiePosition == zombies.Count - 1)
+                SelectZombie(zombies[0]);
+            else
+                SelectZombie(zombies[selectedZombiePosition + 1]);
+        }
     }
 
     public void PushUp()
     {
         if (isGameOver || selectedZombie == null) return;
+
         Rigidbody rb = selectedZombie.GetComponent<Rigidbody>();
-        rb.AddForce(0, 0, 10, ForceMode.Impulse);
+        if (up != null && up.triggered)
+        {
+            rb.AddForce(0, 5, -10, ForceMode.Impulse);
+        }
     }
 
     void SelectZombie(GameObject newZombie)
