@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public Vector3 defaultSize = new Vector3(1f, 1f, 1f);
 
     public TMP_Text scoreText;
-    public TMP_Text timerText;
+    public TMP_Text timerText; 
     public GameObject loseScreen;
 
     private int score = 0;
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         left = InputSystem.actions.FindAction("PrevZombie");
         up = InputSystem.actions.FindAction("Jump");
 
-        SelectZombie(zombies[0]);
+        if (zombies.Count > 0) SelectZombie(zombies[0]);
         if (scoreText != null) scoreText.text = "Score: " + score;
         startTime = Time.time;
         if (loseScreen != null) loseScreen.SetActive(false);
@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (isGameOver) return;
-
         float t = Time.time - startTime;
         if (timerText != null) timerText.text = "Time: " + t.ToString("F2");
         GetZombieLeft();
@@ -50,8 +49,6 @@ public class GameManager : MonoBehaviour
 
     public void GetZombieLeft()
     {
-        if (isGameOver) return;
-
         if (left != null && left.triggered)
         {
             if (selectedZombiePosition == 0)
@@ -63,8 +60,6 @@ public class GameManager : MonoBehaviour
 
     public void GetZombieRight()
     {
-        if (isGameOver) return;
-
         if (right != null && right.triggered)
         {
             if (selectedZombiePosition == zombies.Count - 1)
@@ -76,7 +71,7 @@ public class GameManager : MonoBehaviour
 
     public void PushUp()
     {
-        if (isGameOver || selectedZombie == null) return;
+        if (selectedZombie == null) return;
 
         Rigidbody rb = selectedZombie.GetComponent<Rigidbody>();
         if (up != null && up.triggered)

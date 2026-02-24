@@ -52,19 +52,10 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "f1ba0d36-48eb-4cd5-b651-1c94a6531f70",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Previous",
                     "type": "Button",
                     "id": "2776c80d-3c14-4091-8c56-d04ced07a2b0",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -100,6 +91,15 @@
                     "name": "NextZombie",
                     "type": "Button",
                     "id": "dccf4299-49fb-405e-90b7-3d36c11e568e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "10c258e8-652e-4b81-9ed6-e919475ffe00",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -395,39 +395,6 @@
                 },
                 {
                     "name": "",
-                    "id": "eb40bb66-4559-4dfa-9a2f-820438abb426",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "daba33a1-ad0c-4742-a909-43ad1cdfbeb6",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "603f3daf-40bd-4854-8724-93e8017f59e3",
-                    "path": "<XRController>/secondaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "XR",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "1534dc16-a6aa-499d-9c3a-22b47347b52a",
                     "path": "<Keyboard>/1",
                     "interactions": "",
@@ -533,6 +500,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "NextZombie",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6111421e-ebc8-4155-81ee-6e746254aa13",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e8fb231-f22d-4bae-9298-c15c5d7b0f01",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
